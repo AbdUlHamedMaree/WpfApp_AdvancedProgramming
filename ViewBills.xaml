@@ -1,0 +1,83 @@
+﻿<Window x:Class="WpfApp_D_NrimanProject.ViewBills"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_D_NrimanProject"
+        mc:Ignorable="d"
+        Title="ViewBills" Height="450" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView x:Name="Bills_ListView" Grid.Column="0" SelectionChanged="Bills_ListView_SelectionChanged" SelectionMode="Single">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="رقم الفاتورة" Width="100" DisplayMemberBinding="{Binding BillID}"/>
+                    <GridViewColumn Header="مجموع القطع" Width="100" DisplayMemberBinding="{Binding ItemsCount}"/>
+                    <GridViewColumn Header="مجموع السعر" Width="150" DisplayMemberBinding="{Binding TotalPrice}"/>
+                    <GridViewColumn Header="تاريخ الشراء" Width="150" DisplayMemberBinding="{Binding OutTime}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Black" FontSize="18"  FontStyle="Italic" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding ItemCount}" FontSize="11" Foreground="Gray" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        
+        <ListView x:Name="Items_ListView" Grid.Column="1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="اسم المنتج" Width="100" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="نوع المنتج" Width="100" DisplayMemberBinding="{Binding ItemType}" />
+                    <GridViewColumn Header="سعر القطعة" Width="100" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="تاريخ الإضافة" Width="150" DisplayMemberBinding="{Binding InTime}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="False">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Black" FontSize="18"  FontStyle="Italic" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding ItemCount}" FontSize="11" Foreground="Gray" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+    </Grid>
+</Window>

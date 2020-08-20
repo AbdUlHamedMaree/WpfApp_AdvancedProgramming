@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfApp_D_NrimanProject.RequestString"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_D_NrimanProject"
+        mc:Ignorable="d"
+        Title="RequestString" Height="120" Width="300">
+    <Grid x:Name="root_Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
+        
+        <TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Row="1"/>
+
+        <Button Click="Button_Click" Content="تم" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Row="3"/>
+    </Grid>
+</Window>

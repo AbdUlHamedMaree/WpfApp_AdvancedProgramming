@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfApp_D_NrimanProject.SellItems"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp_D_NrimanProject"
+        mc:Ignorable="d"
+        Title="SellItems" Height="450" Width="1050" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="Items_ListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="اسم المنتج" Width="150" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="سعر القطعة" Width="100" DisplayMemberBinding="{Binding Price}"/>
+                    <GridViewColumn Header="عدد القطع" Width="100" DisplayMemberBinding="{Binding ItemCount}"/>
+                    <GridViewColumn Header="السعر الكلي" Width="150" DisplayMemberBinding="{Binding TotalPrice}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Black" FontSize="18"  FontStyle="Italic" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="{Binding ItemCount}" FontSize="11" Foreground="Gray" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            
+            <ComboBox x:Name="ItemType_ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="0" Grid.Row="0" SelectionChanged="ItemType_ComboBox_SelectionChanged"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text=":نوع المنتج" Grid.Column="1" Grid.Row="0"/>
+
+            <ComboBox x:Name="ItemName_ComboBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="0" Grid.Row="1" IsEnabled="False" SelectionChanged="ItemName_ComboBox_SelectionChanged"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text=":اسم المنتج" Grid.Column="1" Grid.Row="1"/>
+
+            <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <TextBox TextChanged="ItemCount_TextBox_TextChanged" PreviewTextInput="TextBox_PreviewTextInput" x:Name="ItemCount_TextBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Margin="20" IsEnabled="False" RenderTransformOrigin="0.5,0.5"/>
+                <TextBlock x:Name="ItemCount_TextBlock" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text=":عدد القطع" Grid.Column="1" Grid.Row="2"/>
+
+            <Button Click="Add_Button_Click" Content="إضافة" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"/>
+            
+            <Button Click="End_Button_Click" Content="إنهاء وبيع" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+        </Grid>
+    </Grid>
+</Window>
